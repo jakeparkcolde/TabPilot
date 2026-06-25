@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="TabPilot 도움말, FAQ 및 문제 신고" />
+    <meta name="theme-color" content="#0a0a0a" />
+    <title>TabPilot 지원</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./index.html" aria-label="TabPilot 홈">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M2 9c3-2.4 6 2 9-1.4C14 5 17 8.4 22 6.4" />
+            <path d="M2 13c3-2.4 6 2 9-1.4C14 9 17 12.4 22 10.4" />
+            <path d="M2 17c3-2.4 6 2 9-1.4C14 13 17 16.4 22 14.4" />
+          </svg>
+        </span>
+        <strong>TabPilot</strong>
+      </a>
+      <nav aria-label="주요 메뉴">
+        <a href="./index.html">홈</a>
+        <a aria-current="page" href="./support.html">지원</a>
+        <a href="./privacy.html">개인정보처리방침</a>
+      </nav>
+    </header>
+
+    <main class="content-page">
+      <section class="page-intro">
+        <p class="eyebrow">SUPPORT</p>
+        <h1>무엇을 도와드릴까요?</h1>
+        <p class="lead">
+          자주 묻는 질문을 확인하거나 GitHub를 통해 문제와 개선 의견을 남길 수
+          있습니다.
+        </p>
+        <a
+          class="button primary"
+          href="https://github.com/jakeparkcolde/tabpilot-privacy/issues/new?title=%5BSupport%5D%20&body=%23%23%20%EB%AC%B8%EC%A0%9C%20%EC%84%A4%EB%AA%85%0A%0A%23%23%20%EC%9E%AC%ED%98%84%20%EB%B0%A9%EB%B2%95%0A1.%20%0A2.%20%0A%0A%23%23%20%ED%99%98%EA%B2%BD%0A-%20Chrome%20%EB%B2%84%EC%A0%84%3A%20%0A-%20macOS%2FWindows%3A%20%0A%0A%ED%83%AD%20URL%20%EB%93%B1%20%EA%B0%9C%EC%9D%B8%EC%A0%95%EB%B3%B4%EB%8A%94%20%EB%B0%98%EB%93%9C%EC%8B%9C%20%EA%B0%80%EB%A0%A4%20%EC%A3%BC%EC%84%B8%EC%9A%94."
+          >지원 요청 작성</a
+        >
+      </section>
+
+      <section class="section compact">
+        <p class="eyebrow">QUICK CHECK</p>
+        <h2>먼저 확인해 주세요</h2>
+        <ol class="check-list">
+          <li>Chrome을 최신 버전으로 업데이트합니다.</li>
+          <li>
+            <code>chrome://extensions</code>에서 TabPilot의 새로고침 버튼을
+            누릅니다.
+          </li>
+          <li>팝업의 새로고침 버튼으로 탭 상태를 다시 확인합니다.</li>
+          <li>활성·고정·오디오 재생·로딩·보호 탭인지 확인합니다.</li>
+        </ol>
+      </section>
+
+      <section class="section compact">
+        <p class="eyebrow">FAQ</p>
+        <h2>자주 묻는 질문</h2>
+        <div class="faq-list">
+          <details>
+            <summary>휴면 처리하면 탭이 닫히나요?</summary>
+            <p>
+              닫히지 않습니다. 탭과 URL은 그대로 유지되고, 해당 탭을 다시 열면
+              페이지가 새로 로드됩니다.
+            </p>
+          </details>
+          <details>
+            <summary>왜 어떤 탭은 정리 후보에 나타나지 않나요?</summary>
+            <p>
+              활성 탭, 고정 탭, 소리 재생 탭, 로딩 중인 탭, 보호한 탭과 사이트는
+              안전을 위해 후보에서 제외됩니다.
+            </p>
+          </details>
+          <details>
+            <summary>자동 정리는 언제 실행되나요?</summary>
+            <p>
+              기본값은 꺼짐입니다. 사용자가 활성화한 뒤 정해진 검사 시점에
+              시스템 여유 메모리가 설정 기준 이하인 경우에만 실행됩니다.
+            </p>
+          </details>
+          <details>
+            <summary>휴면 처리한 탭을 복구할 수 있나요?</summary>
+            <p>
+              휴면 탭 목록에서 다시 열 수 있으며, 정리 직후에는 방금 정리한 탭을
+              한 번에 되돌릴 수도 있습니다.
+            </p>
+          </details>
+          <details>
+            <summary>메모리 절약량은 정확한 값인가요?</summary>
+            <p>
+              Chrome은 탭별 메모리 사용량을 확장 프로그램에 직접 제공하지
+              않습니다. TabPilot은 정리 전후 시스템 가용 메모리 변화를 참고해
+              추정치를 표시합니다.
+            </p>
+          </details>
+          <details>
+            <summary>탭 정보가 외부로 전송되나요?</summary>
+            <p>
+              전송되지 않습니다. 설정과 정리 기록은 현재 기기의 Chrome
+              저장소에만 보관됩니다.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <section class="report-card">
+        <div>
+          <h2>문제가 계속되나요?</h2>
+          <p>
+            문제 설명, 재현 순서, Chrome 버전과 운영체제를 알려주세요. 화면
+            캡처를 첨부할 때는 탭 URL 등 개인정보를 반드시 가려 주세요.
+          </p>
+        </div>
+        <a
+          class="button primary"
+          href="https://github.com/jakeparkcolde/tabpilot-privacy/issues/new"
+          >GitHub에서 신고</a
+        >
+      </section>
+    </main>
+
+    <footer>
+      <span>© 2026 coldbyte Jake Park</span>
+      <div>
+        <a href="./index.html">홈</a>
+        <a href="./privacy.html">개인정보처리방침</a>
+      </div>
+    </footer>
+  </body>
+</html>

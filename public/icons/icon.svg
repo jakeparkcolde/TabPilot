@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <rect width="1024" height="1024" rx="224" fill="#0A0A0A"/>
+  <path
+    d="M150 340C278 238 382 430 510 286C638 176 740 350 874 266"
+    fill="none"
+    stroke="#0F5132"
+    stroke-width="78"
+    stroke-linecap="round"
+  />
+  <path
+    d="M150 512C278 410 382 602 510 458C638 348 740 522 874 438"
+    fill="none"
+    stroke="#2D8C5F"
+    stroke-width="78"
+    stroke-linecap="round"
+  />
+  <path
+    d="M150 684C278 582 382 774 510 630C638 520 740 694 874 610"
+    fill="none"
+    stroke="#A8DDC5"
+    stroke-width="78"
+    stroke-linecap="round"
+  />
+</svg>

@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TabPilot 시작하기</title>
+  </head>
+  <body>
+    <main class="onboarding">
+      <header class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M2 9c3-2.4 6 2 9-1.4C14 5 17 8.4 22 6.4" />
+            <path d="M2 13c3-2.4 6 2 9-1.4C14 9 17 12.4 22 10.4" />
+            <path d="M2 17c3-2.4 6 2 9-1.4C14 13 17 16.4 22 14.4" />
+          </svg>
+        </span>
+        <strong>TabPilot</strong>
+      </header>
+
+      <section class="hero">
+        <p class="eyebrow">WELCOME</p>
+        <h1>중요한 탭은 지키고,<br />메모리만 가볍게.</h1>
+        <p>
+          TabPilot은 탭을 닫지 않습니다. 오래 사용하지 않은 탭을 Chrome의 휴면
+          상태로 전환하고, 다시 열면 페이지를 새로 불러옵니다.
+        </p>
+        <div class="principles">
+          <article>
+            <strong>안전 우선</strong><span>활성·고정·오디오 탭 제외</span>
+          </article>
+          <article>
+            <strong>언제든 복구</strong><span>휴면 탭과 되돌리기 제공</span>
+          </article>
+          <article>
+            <strong>기기 안에서</strong><span>외부 서버 전송 없음</span>
+          </article>
+        </div>
+      </section>
+
+      <form id="onboarding-form">
+        <section class="step">
+          <div class="step-heading">
+            <span>01</span>
+            <div>
+              <h2>기본 정리 기준</h2>
+              <p>처음 사용하기 좋은 안전한 기준을 선택하세요.</p>
+            </div>
+          </div>
+          <div id="threshold-options" class="choice-grid three">
+            <label>
+              <input type="radio" name="threshold" value="30" />
+              <span><strong>30분</strong><small>빠른 정리</small></span>
+            </label>
+            <label>
+              <input type="radio" name="threshold" value="60" checked />
+              <span><strong>1시간</strong><small>권장</small></span>
+            </label>
+            <label>
+              <input type="radio" name="threshold" value="360" />
+              <span><strong>6시간</strong><small>보수적</small></span>
+            </label>
+          </div>
+        </section>
+
+        <section class="step">
+          <div class="step-heading">
+            <span>02</span>
+            <div>
+              <h2>항상 보호할 사이트</h2>
+              <p>
+                선택한 사이트와 하위 도메인은 자동·수동 정리에서 제외됩니다.
+              </p>
+            </div>
+          </div>
+          <div class="preset-grid">
+            <label>
+              <input type="checkbox" name="preset" value="work" checked />
+              <span>
+                <strong>문서·디자인</strong>
+                <small>Google Docs, Figma, Notion</small>
+              </span>
+            </label>
+            <label>
+              <input type="checkbox" name="preset" value="developer" />
+              <span>
+                <strong>개발 도구</strong>
+                <small>GitHub, localhost, 127.0.0.1</small>
+              </span>
+            </label>
+            <label>
+              <input type="checkbox" name="preset" value="communication" />
+              <span>
+                <strong>커뮤니케이션</strong>
+                <small>Gmail, Slack, Discord</small>
+              </span>
+            </label>
+          </div>
+        </section>
+
+        <section class="step">
+          <div class="step-heading">
+            <span>03</span>
+            <div>
+              <h2>자동 정리</h2>
+              <p>
+                기본값은 꺼짐입니다. 켜도 메모리 조건과 안전 조건을 모두
+                확인합니다.
+              </p>
+            </div>
+          </div>
+          <label class="auto-choice">
+            <input id="auto-cleanup" type="checkbox" />
+            <span class="switch" aria-hidden="true"></span>
+            <span>
+              <strong>저메모리 상태에서 자동 정리 사용</strong>
+              <small
+                >30분마다 확인하고 시스템 여유 메모리 15% 이하에서만 실행</small
+              >
+            </span>
+          </label>
+        </section>
+
+        <section class="finish">
+          <div>
+            <strong>설정은 언제든 변경할 수 있습니다.</strong>
+            <p>
+              Chrome 도구 모음의 TabPilot 아이콘을 눌러 첫 정리를 시작하세요.
+            </p>
+          </div>
+          <button id="complete" type="submit">설정 완료하고 시작하기</button>
+        </section>
+        <p id="status" class="status" role="status"></p>
+      </form>
+    </main>
+    <script type="module" src="/src/onboarding/onboarding.ts"></script>
+  </body>
+</html>

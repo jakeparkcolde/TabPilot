@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TabPilot</title>
+  </head>
+  <body>
+    <main class="shell">
+      <header>
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path
+                d="M2 9c3-2.4 6 2 9-1.4C14 5 17 8.4 22 6.4"
+                class="wave-deep"
+              />
+              <path
+                d="M2 13c3-2.4 6 2 9-1.4C14 9 17 12.4 22 10.4"
+                class="wave-main"
+              />
+              <path
+                d="M2 17c3-2.4 6 2 9-1.4C14 13 17 16.4 22 14.4"
+                class="wave-mint"
+              />
+            </svg>
+          </span>
+          <div>
+            <p class="eyebrow">TABPILOT</p>
+            <h1>탭 정리</h1>
+          </div>
+        </div>
+        <div class="header-actions">
+          <button
+            id="open-activity"
+            class="manage-button"
+            type="button"
+            aria-label="전체 탭 관리 열기"
+            title="전체 탭 관리"
+          >
+            전체 관리
+          </button>
+          <button
+            id="refresh"
+            class="icon-button"
+            type="button"
+            aria-label="탭 상태 새로고침"
+            title="새로고침"
+          >
+            ↻
+          </button>
+          <button
+            id="open-options"
+            class="icon-button"
+            type="button"
+            aria-label="TabPilot 설정 열기"
+            title="설정"
+          >
+            ⋯
+          </button>
+        </div>
+      </header>
+
+      <section class="compact-summary" aria-label="탭 상태 요약">
+        <article>
+          <strong id="compact-total">—</strong><span>전체</span>
+        </article>
+        <article>
+          <strong id="compact-candidates">—</strong><span>후보</span>
+        </article>
+        <article>
+          <strong id="compact-discarded">—</strong><span>휴면</span>
+        </article>
+        <article>
+          <strong id="compact-protected">—</strong><span>보호</span>
+        </article>
+      </section>
+
+      <section class="summary" aria-label="탭 상태 요약">
+        <article class="summary-primary">
+          <span>정리 후보</span><strong id="candidate-tabs">—</strong>
+          <small>안전하게 메모리를 줄일 수 있어요</small>
+        </article>
+        <div class="summary-secondary">
+          <article>
+            <strong id="total-tabs">—</strong><span>전체 탭</span>
+          </article>
+          <article>
+            <strong id="discarded-tabs">—</strong><span>휴면</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="guide-hero">
+        <div class="guide-gauge">
+          <svg viewBox="0 0 148 148" aria-hidden="true">
+            <circle class="gauge-track" cx="74" cy="74" r="62" />
+            <circle id="guide-gauge-value" cx="74" cy="74" r="62" />
+          </svg>
+          <div>
+            <strong id="guide-memory">—</strong>
+            <span>사용 가능 메모리</span>
+          </div>
+        </div>
+        <h2 id="guide-title">탭 상태 확인 중</h2>
+        <p id="guide-description">
+          작업 중인 탭은 보호하고 오래 사용하지 않은 탭만 정리합니다.
+        </p>
+      </section>
+
+      <section class="action-panel">
+        <div class="memory-overview">
+          <article>
+            <span>전체 메모리</span>
+            <strong id="memory-total">—</strong>
+          </article>
+          <article>
+            <span>시스템 여유</span>
+            <strong id="memory-available">—</strong>
+          </article>
+          <article>
+            <span>Chrome 점유</span>
+            <strong class="limited">측정 제한</strong>
+          </article>
+          <article>
+            <span>정리 가능 추정</span>
+            <strong id="memory-estimate">측정 전</strong>
+          </article>
+        </div>
+        <div class="memory-track" aria-hidden="true">
+          <span id="memory-bar"></span>
+        </div>
+        <div id="memory-savings" class="memory-savings">
+          <span aria-hidden="true">↗</span>
+          <div>
+            <small>최근 정리 추정치</small>
+            <strong>아직 측정된 절약량이 없습니다</strong>
+          </div>
+        </div>
+        <button id="cleanup" class="primary" type="button" disabled>
+          안전 정리하기
+        </button>
+        <button id="undo-cleanup" class="undo-button" type="button" hidden>
+          방금 정리 되돌리기
+        </button>
+        <p id="status" class="status" role="status">탭 상태 확인 중</p>
+        <button id="toggle-review" class="review-button" type="button">
+          어떤 탭이 정리되나요?
+        </button>
+      </section>
+
+      <section class="candidate-section" aria-labelledby="candidate-heading">
+        <div class="section-heading">
+          <div>
+            <p class="section-label">REVIEW</p>
+            <h2 id="candidate-heading">정리할 탭</h2>
+          </div>
+          <div class="section-tools">
+            <button id="toggle-all" type="button">모두 선택</button>
+            <span id="protected-tabs"></span>
+          </div>
+        </div>
+        <ul id="candidate-list" class="candidate-list"></ul>
+      </section>
+
+      <section class="discarded-section" aria-labelledby="discarded-heading">
+        <div class="section-heading">
+          <div>
+            <p class="section-label dormant-label">SLEEPING</p>
+            <h2 id="discarded-heading">휴면 중인 탭</h2>
+          </div>
+          <div class="section-tools">
+            <span id="discarded-count"></span>
+          </div>
+        </div>
+        <ul id="discarded-list" class="candidate-list"></ul>
+      </section>
+    </main>
+    <script type="module" src="/src/popup/popup.ts"></script>
+  </body>
+</html>

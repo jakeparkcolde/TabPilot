@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TabPilot 설정</title>
+  </head>
+  <body>
+    <main class="settings">
+      <header class="page-header">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path
+                d="M2 9c3-2.4 6 2 9-1.4C14 5 17 8.4 22 6.4"
+                class="wave-deep"
+              />
+              <path
+                d="M2 13c3-2.4 6 2 9-1.4C14 9 17 12.4 22 10.4"
+                class="wave-main"
+              />
+              <path
+                d="M2 17c3-2.4 6 2 9-1.4C14 13 17 16.4 22 14.4"
+                class="wave-mint"
+              />
+            </svg>
+          </span>
+          <div>
+            <p class="eyebrow">TABPILOT</p>
+            <h1>설정</h1>
+            <p class="subtitle">탭 정리 기준과 보호할 사이트를 관리합니다.</p>
+          </div>
+        </div>
+        <div class="page-header-actions">
+          <button id="open-onboarding" class="text-button" type="button">
+            사용 안내 다시 보기
+          </button>
+          <span id="save-status" class="save-status" role="status"></span>
+        </div>
+      </header>
+
+      <div class="settings-layout">
+        <div class="settings-main">
+          <section class="panel" aria-labelledby="theme-heading">
+            <div class="panel-heading">
+              <div>
+                <span class="section-icon" aria-hidden="true">THEME</span>
+                <h2 id="theme-heading">화면 테마</h2>
+                <p>
+                  시스템 설정을 따르거나 밝은 화면과 어두운 화면을 고정합니다.
+                </p>
+              </div>
+            </div>
+            <div id="theme-options" class="theme-options">
+              <button type="button" data-theme-value="system">시스템</button>
+              <button type="button" data-theme-value="light">라이트</button>
+              <button type="button" data-theme-value="dark">다크</button>
+            </div>
+          </section>
+
+          <section class="panel" aria-labelledby="layout-heading">
+            <div class="panel-heading">
+              <div>
+                <span class="section-icon" aria-hidden="true">00</span>
+                <h2 id="layout-heading">팝업 레이아웃</h2>
+                <p>확장 아이콘을 눌렀을 때 사용할 화면을 선택하세요.</p>
+              </div>
+            </div>
+            <div id="layout-options" class="layout-options">
+              <button type="button" class="layout-option" data-layout="a">
+                <strong>A</strong>
+                <span>요약 중심</span>
+                <small>큰 숫자와 원클릭 정리</small>
+              </button>
+              <button type="button" class="layout-option" data-layout="b">
+                <strong>B</strong>
+                <span>컴팩트·선택</span>
+                <small>탭을 직접 골라 정리</small>
+              </button>
+              <button type="button" class="layout-option" data-layout="c">
+                <strong>C</strong>
+                <span>흐름·가이드</span>
+                <small>메모리 상태 중심 안내</small>
+              </button>
+            </div>
+          </section>
+
+          <section class="panel" aria-labelledby="cleanup-heading">
+            <div class="panel-heading">
+              <div>
+                <span class="section-icon" aria-hidden="true">01</span>
+                <h2 id="cleanup-heading">정리 기준</h2>
+                <p>수동 정리와 자동 정리에 동일하게 적용됩니다.</p>
+              </div>
+              <button id="restore-defaults" class="text-button" type="button">
+                기본값 복원
+              </button>
+            </div>
+
+            <form id="settings-form">
+              <label class="field">
+                <span>비활성 기준</span>
+                <select id="inactivity-threshold" name="inactivityThreshold">
+                  <option value="15">15분</option>
+                  <option value="30">30분</option>
+                  <option value="60">1시간</option>
+                  <option value="120">2시간</option>
+                  <option value="360">6시간</option>
+                  <option value="720">12시간</option>
+                  <option value="1440">1일</option>
+                  <option value="4320">3일</option>
+                  <option value="10080">7일</option>
+                </select>
+                <small>마지막 사용 이후 지난 시간</small>
+              </label>
+
+              <label class="field">
+                <span>한 번에 정리할 탭</span>
+                <input
+                  id="max-tabs"
+                  name="maxTabs"
+                  type="number"
+                  min="1"
+                  max="20"
+                  step="1"
+                  required
+                />
+                <small>최대 20개까지 설정 가능</small>
+              </label>
+
+              <button class="primary-button" type="submit">
+                변경사항 저장
+              </button>
+            </form>
+
+            <div class="auto-cleanup">
+              <div class="auto-cleanup-copy">
+                <span class="auto-icon" aria-hidden="true">A</span>
+                <div>
+                  <strong>자동 정리</strong>
+                  <p>보호하지 않은 후보를 주기적으로 확인해 자동 휴면합니다.</p>
+                </div>
+              </div>
+              <label class="switch">
+                <input id="auto-cleanup-enabled" type="checkbox" />
+                <span aria-hidden="true"></span>
+                <span class="sr-only">자동 정리 사용</span>
+              </label>
+              <label class="auto-interval">
+                <span>검사 주기</span>
+                <select id="auto-cleanup-interval">
+                  <option value="15">15분마다</option>
+                  <option value="30">30분마다</option>
+                  <option value="60">1시간마다</option>
+                </select>
+              </label>
+              <label class="auto-interval">
+                <span>여유 메모리 기준</span>
+                <select id="low-memory-threshold">
+                  <option value="10">10% 이하</option>
+                  <option value="15">15% 이하</option>
+                  <option value="20">20% 이하</option>
+                  <option value="25">25% 이하</option>
+                </select>
+              </label>
+            </div>
+            <div class="auto-status" aria-live="polite">
+              <div class="auto-status-copy">
+                <span>자동 정리 상태</span>
+                <strong id="auto-status-title">확인 중…</strong>
+                <p id="auto-status-detail">
+                  마지막 검사 결과를 불러오고 있습니다.
+                </p>
+              </div>
+              <div class="auto-status-schedule">
+                <span>다음 검사</span>
+                <strong id="auto-next-check">—</strong>
+              </div>
+              <button
+                id="run-auto-check"
+                class="secondary-button"
+                type="button"
+              >
+                지금 자동 검사
+              </button>
+            </div>
+            <p class="safety-note">
+              검사 시 시스템 여유 메모리가 기준 이하일 때만 실행합니다.
+              활성·고정·소리 재생·로딩 탭과 보호 탭은 항상 제외됩니다.
+            </p>
+          </section>
+
+          <section class="panel" aria-labelledby="domains-heading">
+            <div class="panel-heading">
+              <div>
+                <span class="section-icon" aria-hidden="true">02</span>
+                <h2 id="domains-heading">보호 도메인</h2>
+                <p>등록한 사이트와 서브도메인은 항상 정리에서 제외됩니다.</p>
+              </div>
+            </div>
+
+            <form id="domain-form" class="domain-form">
+              <label class="sr-only" for="domain-input">보호 도메인</label>
+              <input
+                id="domain-input"
+                type="text"
+                inputmode="url"
+                autocomplete="off"
+                placeholder="github.com"
+              />
+              <button class="secondary-button" type="submit">
+                도메인 추가
+              </button>
+            </form>
+            <p id="domain-error" class="field-error" role="alert"></p>
+            <ul id="domain-list" class="domain-list"></ul>
+          </section>
+        </div>
+
+        <aside class="settings-side">
+          <section
+            class="panel preview-panel"
+            aria-labelledby="preview-heading"
+          >
+            <div class="panel-heading">
+              <div>
+                <span class="section-icon" aria-hidden="true">PREVIEW</span>
+                <h2 id="preview-heading">팝업 미리보기</h2>
+                <p>선택한 레이아웃이 실제 데이터로 표시됩니다.</p>
+              </div>
+              <span id="preview-layout" class="preview-layout">A</span>
+            </div>
+            <div class="preview-browser" aria-hidden="true">
+              <div class="preview-toolbar">
+                <span></span><span></span>
+                <span class="preview-extension-mark">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M2 9c3-2.4 6 2 9-1.4C14 5 17 8.4 22 6.4"
+                      class="wave-deep"
+                    />
+                    <path
+                      d="M2 13c3-2.4 6 2 9-1.4C14 9 17 12.4 22 10.4"
+                      class="wave-main"
+                    />
+                    <path
+                      d="M2 17c3-2.4 6 2 9-1.4C14 13 17 16.4 22 14.4"
+                      class="wave-mint"
+                    />
+                  </svg>
+                </span>
+              </div>
+              <div class="preview-stage">
+                <iframe
+                  id="popup-preview"
+                  title="TabPilot 팝업 미리보기"
+                  src="popup.html"
+                  tabindex="-1"
+                ></iframe>
+              </div>
+            </div>
+          </section>
+
+          <section
+            class="panel history-panel"
+            aria-labelledby="history-heading"
+          >
+            <div class="panel-heading">
+              <div>
+                <span class="section-icon" aria-hidden="true">03</span>
+                <h2 id="history-heading">최근 정리</h2>
+                <p>이 기기에만 저장되는 최근 기록입니다.</p>
+              </div>
+              <button id="clear-history" class="danger-button" type="button">
+                모두 삭제
+              </button>
+            </div>
+            <button
+              id="open-activity"
+              class="secondary-button history-open"
+              type="button"
+            >
+              휴면 탭과 전체 기록 관리
+            </button>
+            <ul id="history-list" class="history-list"></ul>
+          </section>
+
+          <section class="privacy-note">
+            <span class="privacy-mark" aria-hidden="true">✓</span>
+            <div>
+              <h2>데이터는 기기 안에만</h2>
+              <p>
+                탭 제목과 도메인을 외부로 전송하지 않으며 모든 사이트 접근
+                권한도 사용하지 않습니다.
+              </p>
+            </div>
+          </section>
+        </aside>
+      </div>
+    </main>
+    <script type="module" src="/src/options/options.ts"></script>
+  </body>
+</html>
