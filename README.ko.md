@@ -2,6 +2,8 @@
 
 [English](README.md) | **한국어**
 
+[Chrome 웹 스토어에서 설치](https://chromewebstore.google.com/detail/kaenladnpkombaijhlibmmijcofojhlb)
+
 작업 중인 탭은 보호하고, 오래 사용하지 않은 탭만 안전하게 휴면 처리하는 Chrome 메모리 관리 확장 프로그램입니다.
 
 TabPilot은 탭을 닫지 않습니다. Chrome의 네이티브 탭 휴면 기능을 사용하므로 탭과 URL은 유지되며, 다시 열면 페이지가 새로 로드됩니다.

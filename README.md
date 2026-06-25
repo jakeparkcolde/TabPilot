@@ -2,6 +2,8 @@
 
 **English** | [한국어](README.ko.md)
 
+[Install from the Chrome Web Store](https://chromewebstore.google.com/detail/kaenladnpkombaijhlibmmijcofojhlb)
+
 TabPilot is a Chrome memory management extension that protects tabs you are
 actively using and safely suspends only tabs that have been inactive for a
 while.
