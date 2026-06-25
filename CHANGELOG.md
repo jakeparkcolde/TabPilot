@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.1 — 2026-06-25
+
+- Published the source-available GitHub repository
+- Added English and Korean README documentation
+- Updated project and support links to the public repository
+
 ## 0.1.0 — 2026-06-25
 
 - Initial Chrome Web Store release candidate

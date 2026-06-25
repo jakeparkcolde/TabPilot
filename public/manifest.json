@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "TabPilot",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "작업 중인 탭은 보호하고, 오래 사용하지 않은 탭만 안전하게 휴면 처리해 Chrome 메모리를 관리합니다.",
   "minimum_chrome_version": "121",
   "incognito": "not_allowed",
