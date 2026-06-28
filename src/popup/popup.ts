@@ -1,4 +1,5 @@
 import "./popup.css";
+import { localizeText, translateStaticPage } from "../lib/i18n";
 import { applyTheme, watchSystemTheme } from "../lib/theme";
 import type { AppResponse, RequestMessage, ResponseMap } from "../lib/messages";
 import type { DashboardData, DashboardTab, Settings } from "../lib/types";
@@ -55,6 +56,8 @@ let reviewVisible = false;
 let lastCleanedTabIds: number[] = [];
 let lastCleanupCount = 0;
 
+translateStaticPage();
+
 optionsButton?.addEventListener("click", () => {
   void chrome.runtime.openOptionsPage();
 });
@@ -92,9 +95,9 @@ toggleAllButton?.addEventListener("click", () => {
 toggleReviewButton?.addEventListener("click", () => {
   reviewVisible = !reviewVisible;
   candidateSection?.classList.toggle("review-visible", reviewVisible);
-  toggleReviewButton.textContent = reviewVisible
-    ? "검토 목록 접기"
-    : "어떤 탭이 정리되나요?";
+  toggleReviewButton.textContent = localizeText(
+    reviewVisible ? "검토 목록 접기" : "어떤 탭이 정리되나요?",
+  );
 });
 
 void initialize();
@@ -139,7 +142,7 @@ async function runCleanup(): Promise<void> {
   const selectedIds = [...selectedTabIds];
 
   cleanupButton.disabled = true;
-  cleanupButton.textContent = "정리 중…";
+  cleanupButton.textContent = localizeText("정리 중…");
   setStatus("실행 직전 탭 상태를 다시 확인하고 있습니다.");
 
   try {
@@ -236,6 +239,7 @@ function renderDashboard(dashboard: DashboardData): void {
   renderCandidates(dashboard.candidates);
   renderDiscarded(dashboard.discarded);
   renderMemorySavings(dashboard.lastMemorySavings);
+  translateStaticPage();
 }
 
 function syncSelectedTabs(nextDashboard: DashboardData): void {
@@ -471,7 +475,7 @@ async function activateTab(tabId: number): Promise<void> {
 async function undoCleanup(): Promise<void> {
   if (lastCleanedTabIds.length === 0 || !undoCleanupButton) return;
   undoCleanupButton.disabled = true;
-  undoCleanupButton.textContent = "되돌리는 중…";
+  undoCleanupButton.textContent = localizeText("되돌리는 중…");
 
   try {
     const result = await sendMessage("REACTIVATE_TABS", {
@@ -486,7 +490,7 @@ async function undoCleanup(): Promise<void> {
     setStatus("방금 정리한 탭을 되돌리지 못했습니다.");
   } finally {
     undoCleanupButton.disabled = false;
-    undoCleanupButton.textContent = "방금 정리 되돌리기";
+    undoCleanupButton.textContent = localizeText("방금 정리 되돌리기");
     undoCleanupButton.hidden = lastCleanedTabIds.length === 0;
   }
 }
@@ -543,7 +547,7 @@ function setStatus(message: string): void {
 }
 
 function setText(element: HTMLElement | null, value: string): void {
-  if (element) element.textContent = value;
+  if (element) element.textContent = localizeText(value);
 }
 
 function formatBytes(bytes: number): string {
@@ -557,7 +561,7 @@ function formatMemorySavings(bytes: number): string {
 }
 
 function formatTime(timestamp: number): string {
-  return new Intl.DateTimeFormat("ko-KR", {
+  return new Intl.DateTimeFormat(chrome.i18n.getUILanguage(), {
     hour: "2-digit",
     minute: "2-digit",
   }).format(timestamp);

@@ -1,5 +1,6 @@
 import "./activity.css";
 import type { AppResponse, RequestMessage, ResponseMap } from "../lib/messages";
+import { localizeText, translateStaticPage } from "../lib/i18n";
 import { applyTheme, watchSystemTheme } from "../lib/theme";
 import type {
   CleanupHistoryEntry,
@@ -31,6 +32,8 @@ let dashboard: DashboardData | null = null;
 let history: CleanupHistoryEntry[] = [];
 let activeFilter: TabFilter = "all";
 let searchQuery = "";
+
+translateStaticPage();
 
 document.querySelector("#refresh")?.addEventListener("click", () => {
   void loadActivity();
@@ -136,6 +139,7 @@ function renderManagedTabs(): void {
   for (const tab of filteredTabs) {
     allTabsList.append(createManagedTabItem(tab));
   }
+  translateStaticPage(allTabsList);
 }
 
 function matchesFilter(tab: ManagedTab): boolean {
@@ -284,6 +288,7 @@ function renderSleeping(tabs: DashboardTab[]): void {
     item.append(content, button);
     sleepingList.append(item);
   }
+  translateStaticPage(sleepingList);
 }
 
 function renderHistory(entries: CleanupHistoryEntry[]): void {
@@ -315,6 +320,7 @@ function renderHistory(entries: CleanupHistoryEntry[]): void {
     item.append(content, badge);
     historyList.append(item);
   }
+  translateStaticPage(historyList);
 }
 
 function createActionButton(
@@ -325,7 +331,7 @@ function createActionButton(
   const button = document.createElement("button");
   button.type = "button";
   button.className = className;
-  button.textContent = label;
+  button.textContent = localizeText(label);
   button.addEventListener("click", () => void action());
   return button;
 }
@@ -376,7 +382,13 @@ async function activateTab(tabId: number): Promise<void> {
 }
 
 async function clearHistory(): Promise<void> {
-  if (!window.confirm("이 기기에 저장된 정리 기록을 모두 삭제할까요?")) return;
+  if (
+    !window.confirm(
+      localizeText("이 기기에 저장된 정리 기록을 모두 삭제할까요?"),
+    )
+  ) {
+    return;
+  }
   await sendMessage("CLEAR_HISTORY", { type: "CLEAR_HISTORY" });
   await loadActivity();
 }
@@ -384,12 +396,12 @@ async function clearHistory(): Promise<void> {
 function createEmpty(message: string): HTMLLIElement {
   const item = document.createElement("li");
   item.className = "empty";
-  item.textContent = message;
+  item.textContent = localizeText(message);
   return item;
 }
 
 function formatDate(timestamp: number): string {
-  return new Intl.DateTimeFormat("ko-KR", {
+  return new Intl.DateTimeFormat(chrome.i18n.getUILanguage(), {
     month: "short",
     day: "numeric",
     hour: "2-digit",
@@ -422,7 +434,7 @@ function setStatus(message: string): void {
 }
 
 function setText(element: HTMLElement | null, value: string): void {
-  if (element) element.textContent = value;
+  if (element) element.textContent = localizeText(value);
 }
 
 async function sendMessage<K extends keyof ResponseMap>(

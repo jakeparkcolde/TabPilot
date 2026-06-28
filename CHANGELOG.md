@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.3 — 2026-06-28
+
+- Added English localization support for the main extension UI
+- Localized popup, settings, onboarding and activity management screens for non-Korean Chrome languages
+
+## 0.1.2 — 2026-06-27
+
+- Added Korean and English Chrome extension localization metadata
+- Added the official TabPilot site as the extension homepage URL
+
 ## 0.1.1 — 2026-06-25
 
 - Published the source-available GitHub repository

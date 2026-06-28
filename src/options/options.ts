@@ -1,6 +1,7 @@
 import "./options.css";
 import { DEFAULT_SETTINGS } from "../lib/constants";
 import { normalizeProtectedDomain } from "../lib/domain";
+import { localizeText, translateStaticPage } from "../lib/i18n";
 import { applyTheme, watchSystemTheme } from "../lib/theme";
 import type { AppResponse, RequestMessage, ResponseMap } from "../lib/messages";
 import type {
@@ -53,6 +54,8 @@ const autoNextCheck = document.querySelector<HTMLElement>("#auto-next-check");
 
 let settings: Settings = DEFAULT_SETTINGS;
 let autoCleanupStatus: AutoCleanupStatus | null = null;
+
+translateStaticPage();
 
 settingsForm?.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -215,7 +218,7 @@ async function removeDomain(domain: string): Promise<void> {
 }
 
 async function clearHistory(): Promise<void> {
-  if (!window.confirm("저장된 정리 기록을 모두 삭제할까요?")) {
+  if (!window.confirm(localizeText("저장된 정리 기록을 모두 삭제할까요?"))) {
     return;
   }
 
@@ -291,7 +294,7 @@ function updateAutoCleanupControls(): void {
 async function runAutoCleanupCheck(): Promise<void> {
   if (!runAutoCheckButton) return;
   runAutoCheckButton.disabled = true;
-  runAutoCheckButton.textContent = "검사 중…";
+  runAutoCheckButton.textContent = localizeText("검사 중…");
   setText(autoStatusTitle, "자동 정리 조건 확인 중");
   setText(autoStatusDetail, "메모리와 정리 후보를 확인하고 있습니다.");
 
@@ -304,7 +307,7 @@ async function runAutoCleanupCheck(): Promise<void> {
     setText(autoStatusTitle, "검사를 완료하지 못했습니다");
     setText(autoStatusDetail, "잠시 후 다시 시도해 주세요.");
   } finally {
-    runAutoCheckButton.textContent = "지금 자동 검사";
+    runAutoCheckButton.textContent = localizeText("지금 자동 검사");
     runAutoCheckButton.disabled = !settings.autoCleanupEnabled;
   }
 }
@@ -410,6 +413,7 @@ function renderDomains(): void {
     item.append(label, removeButton);
     domainList.append(item);
   }
+  translateStaticPage(domainList);
 }
 
 function renderHistory(history: CleanupHistoryEntry[]): void {
@@ -425,6 +429,7 @@ function renderHistory(history: CleanupHistoryEntry[]): void {
     empty.className = "empty";
     empty.textContent = "아직 정리 기록이 없습니다.";
     historyList.append(empty);
+    translateStaticPage(historyList);
     return;
   }
 
@@ -453,6 +458,7 @@ function renderHistory(history: CleanupHistoryEntry[]): void {
     item.append(content, result);
     historyList.append(item);
   }
+  translateStaticPage(historyList);
 }
 
 function ensureThresholdOption(value: number): void {
@@ -463,27 +469,27 @@ function ensureThresholdOption(value: number): void {
   if (!exists) {
     const option = document.createElement("option");
     option.value = value.toString();
-    option.textContent = `${value}분`;
+    option.textContent = localizeText(`${value}분`);
     thresholdSelect.append(option);
   }
 }
 
 function setSaveStatus(message: string, isError = false): void {
   if (!saveStatus) return;
-  saveStatus.textContent = message;
+  saveStatus.textContent = localizeText(message);
   saveStatus.classList.toggle("error", isError);
 }
 
 function setDomainError(message: string): void {
-  if (domainError) domainError.textContent = message;
+  if (domainError) domainError.textContent = localizeText(message);
 }
 
 function setText(element: HTMLElement | null, value: string): void {
-  if (element) element.textContent = value;
+  if (element) element.textContent = localizeText(value);
 }
 
 function formatDate(timestamp: number): string {
-  return new Intl.DateTimeFormat("ko-KR", {
+  return new Intl.DateTimeFormat(chrome.i18n.getUILanguage(), {
     year: "numeric",
     month: "short",
     day: "numeric",

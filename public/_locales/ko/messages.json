@@ -1,0 +1,8 @@
+{
+  "extensionName": {
+    "message": "TabPilot"
+  },
+  "extensionDescription": {
+    "message": "작업 중인 탭은 보호하고, 오래 사용하지 않은 탭만 안전하게 휴면 처리해 Chrome 메모리를 관리합니다."
+  }
+}

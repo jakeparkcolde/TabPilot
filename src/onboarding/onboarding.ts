@@ -1,5 +1,6 @@
 import "./onboarding.css";
 import type { AppResponse, RequestMessage, ResponseMap } from "../lib/messages";
+import { localizeText, translateStaticPage } from "../lib/i18n";
 import { applyTheme } from "../lib/theme";
 import type { Settings } from "../lib/types";
 
@@ -14,6 +15,8 @@ const PRESETS: Record<string, string[]> = {
 };
 const PRESET_DOMAINS = new Set(Object.values(PRESETS).flat());
 let currentSettings: Settings | null = null;
+
+translateStaticPage();
 
 void initialize();
 
@@ -58,7 +61,7 @@ form?.addEventListener("submit", (event) => {
 async function completeOnboarding(): Promise<void> {
   if (!form || !completeButton) return;
   completeButton.disabled = true;
-  completeButton.textContent = "설정 저장 중…";
+  completeButton.textContent = localizeText("설정 저장 중…");
   setStatus("");
 
   const formData = new FormData(form);
@@ -89,19 +92,19 @@ async function completeOnboarding(): Promise<void> {
       },
     });
     document.body.classList.add("complete");
-    completeButton.textContent = "설정 완료";
+    completeButton.textContent = localizeText("설정 완료");
     setStatus(
       "TabPilot 설정을 저장했습니다. 이 탭을 닫고 확장 아이콘을 눌러주세요.",
     );
   } catch {
     completeButton.disabled = false;
-    completeButton.textContent = "설정 완료하고 시작하기";
+    completeButton.textContent = localizeText("설정 완료하고 시작하기");
     setStatus("설정을 저장하지 못했습니다. 다시 시도해 주세요.");
   }
 }
 
 function setStatus(message: string): void {
-  if (status) status.textContent = message;
+  if (status) status.textContent = localizeText(message);
 }
 
 async function sendMessage<K extends keyof ResponseMap>(
