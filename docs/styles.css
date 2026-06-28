@@ -119,6 +119,17 @@ footer a:hover {
   color: var(--mint);
 }
 
+.language-link {
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  padding: 5px 10px;
+  color: var(--text);
+}
+
+.language-link:hover {
+  border-color: var(--mint);
+}
+
 .hero {
   display: grid;
   grid-template-columns: 1.12fr 0.88fr;

@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="TabPilot help, FAQ, and issue reporting"
+    />
+    <meta name="theme-color" content="#0a0a0a" />
+    <title>TabPilot Support</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./index.html" aria-label="TabPilot home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M2 9c3-2.4 6 2 9-1.4C14 5 17 8.4 22 6.4" />
+            <path d="M2 13c3-2.4 6 2 9-1.4C14 9 17 12.4 22 10.4" />
+            <path d="M2 17c3-2.4 6 2 9-1.4C14 13 17 16.4 22 14.4" />
+          </svg>
+        </span>
+        <strong>TabPilot</strong>
+      </a>
+      <nav aria-label="Primary menu">
+        <a href="./index.html">Home</a>
+        <a aria-current="page" href="./support-en.html">Support</a>
+        <a href="./privacy-en.html">Privacy Policy</a>
+        <a class="language-link" href="./support.html">한국어</a>
+      </nav>
+    </header>
+
+    <main class="content-page">
+      <section class="page-intro">
+        <p class="eyebrow">SUPPORT</p>
+        <h1>How can we help?</h1>
+        <p class="lead">
+          Check the FAQ or report issues and improvement ideas through GitHub.
+        </p>
+        <a
+          class="button primary"
+          href="https://github.com/jakeparkcolde/TabPilot/issues/new?title=%5BSupport%5D%20&body=%23%23%20Issue%20description%0A%0A%23%23%20Steps%20to%20reproduce%0A1.%20%0A2.%20%0A%0A%23%23%20Environment%0A-%20Chrome%20version%3A%20%0A-%20macOS%2FWindows%3A%20%0A%0APlease%20hide%20tab%20URLs%20or%20other%20personal%20information%20before%20attaching%20screenshots."
+          >Create support request</a
+        >
+      </section>
+
+      <section class="section compact">
+        <p class="eyebrow">QUICK CHECK</p>
+        <h2>Check these first</h2>
+        <ol class="check-list">
+          <li>Update Chrome to the latest version.</li>
+          <li>
+            Open <code>chrome://extensions</code> and click TabPilot's reload
+            button.
+          </li>
+          <li>Use the popup refresh button to reload tab status.</li>
+          <li>
+            Check whether the tab is active, pinned, audible, loading, or
+            protected.
+          </li>
+        </ol>
+      </section>
+
+      <section class="section compact">
+        <p class="eyebrow">FAQ</p>
+        <h2>Frequently asked questions</h2>
+        <div class="faq-list">
+          <details>
+            <summary>Does sleeping a tab close it?</summary>
+            <p>
+              No. The tab and URL stay in place. When you open the tab again,
+              Chrome reloads the page.
+            </p>
+          </details>
+          <details>
+            <summary>
+              Why are some tabs not shown as cleanup candidates?
+            </summary>
+            <p>
+              Active, pinned, audible, loading, protected tabs, and protected
+              sites are excluded for safety.
+            </p>
+          </details>
+          <details>
+            <summary>When does automatic cleanup run?</summary>
+            <p>
+              Automatic cleanup is off by default. If enabled by the user, it
+              runs at scheduled checks only when available system memory is
+              below the configured threshold.
+            </p>
+          </details>
+          <details>
+            <summary>Can I restore a sleeping tab?</summary>
+            <p>
+              Yes. You can reopen sleeping tabs from the sleeping tab list, and
+              immediately after cleanup you can undo the most recent cleanup.
+            </p>
+          </details>
+          <details>
+            <summary>Are memory savings exact?</summary>
+            <p>
+              Chrome does not provide per-tab memory usage directly to
+              extensions. TabPilot shows an estimate based on changes in system
+              available memory before and after cleanup.
+            </p>
+          </details>
+          <details>
+            <summary>Is tab information sent externally?</summary>
+            <p>
+              No. Settings and cleanup history are stored only in the current
+              device's Chrome storage.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <section class="report-card">
+        <div>
+          <h2>Still having trouble?</h2>
+          <p>
+            Please include the issue description, steps to reproduce, Chrome
+            version, and operating system. If you attach screenshots, hide tab
+            URLs and other personal information.
+          </p>
+        </div>
+        <a
+          class="button primary"
+          href="https://github.com/jakeparkcolde/TabPilot/issues/new"
+          >Report on GitHub</a
+        >
+      </section>
+    </main>
+
+    <footer>
+      <span>© 2026 coldbyte Jake Park</span>
+      <div>
+        <a href="./index.html">Home</a>
+        <a href="./privacy-en.html">Privacy Policy</a>
+        <a href="./support.html">한국어</a>
+      </div>
+    </footer>
+  </body>
+</html>
