@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.4 — 2026-06-28
+
+- Fixed remaining Korean labels in the English activity and history UI
+- Improved localization of relative tab activity and cleanup history metadata
+
 ## 0.1.3 — 2026-06-28
 
 - Added English localization support for the main extension UI

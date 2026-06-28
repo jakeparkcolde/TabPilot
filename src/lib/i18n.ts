@@ -21,6 +21,8 @@ const STATIC_ENGLISH: Record<string, string> = {
   "휴면": "Sleeping",
   "전체 탭": "Total tabs",
   "정리 후보": "Cleanup candidates",
+  "휴면 탭": "Sleeping tabs",
+  "보호 탭": "Protected tabs",
   "안전하게 메모리를 줄일 수 있어요": "Safely reduce memory usage",
   "사용 가능 메모리": "Available memory",
   "탭 상태 확인 중": "Checking tab status",
@@ -217,6 +219,8 @@ const STATIC_ENGLISH: Record<string, string> = {
   "아직 정리 기록이 없습니다.": "No cleanup history yet.",
   "자동": "Automatic",
   "수동": "Manual",
+  "자동 휴면": "Automatic sleep",
+  "수동 휴면": "Manual sleep",
   "휴면 완료": "Slept",
   "실패": "Failed",
   "다시 사용": "Reactivated",
@@ -310,6 +314,30 @@ const REGEX_ENGLISH: Replacement[] = [
     replace: (_, count) => `${count}`,
   },
   {
+    pattern: /^(.+) · 자동 · (.+) · (.+)$/,
+    replace: (_, domain, reason, date) => `${domain} · Automatic · ${reason} · ${date}`,
+  },
+  {
+    pattern: /^(.+) · 수동 · (.+) · (.+)$/,
+    replace: (_, domain, reason, date) => `${domain} · Manual · ${reason} · ${date}`,
+  },
+  {
+    pattern: /^(.+) · 자동 휴면 (.+)$/,
+    replace: (_, domain, date) => `${domain} · Automatic sleep ${date}`,
+  },
+  {
+    pattern: /^(.+) · 수동 휴면 (.+)$/,
+    replace: (_, domain, date) => `${domain} · Manual sleep ${date}`,
+  },
+  {
+    pattern: /^(.+) · 다시 사용 (.+)$/,
+    replace: (_, prefix, date) => `${prefix} · Reactivated ${date}`,
+  },
+  {
+    pattern: /^(.+) · 메모리 해제됨$/,
+    replace: (_, domain) => `${domain} · Memory released`,
+  },
+  {
     pattern: /^탭 (\d+)개를 다시 불러왔습니다\.$/,
     replace: (_, count) => `Restored ${count} tabs.`,
   },
@@ -353,6 +381,21 @@ const REGEX_ENGLISH: Replacement[] = [
   {
     pattern: /^약 (.+) 확보$/,
     replace: (_, value) => `About ${value} reclaimed`,
+  },
+  {
+    pattern: /^창 (\d+) · (.+) · (\d+)분 전 사용$/,
+    replace: (_, windowId, site, minutes) =>
+      `Window ${windowId} · ${site} · Used ${minutes} min ago`,
+  },
+  {
+    pattern: /^창 (\d+) · (.+) · (\d+)시간 전 사용$/,
+    replace: (_, windowId, site, hours) =>
+      `Window ${windowId} · ${site} · Used ${hours} hours ago`,
+  },
+  {
+    pattern: /^창 (\d+) · (.+) · (\d+)일 전 사용$/,
+    replace: (_, windowId, site, days) =>
+      `Window ${windowId} · ${site} · Used ${days} days ago`,
   },
   {
     pattern: /^창 (\d+) · (.+) · (.+)$/,
